@@ -75,3 +75,25 @@ class RoleResponse(BaseModel):
     title: str
     department: str
     description: str
+
+# =========================
+# EMPLOYEE SKILLS SCHEMAS
+# =========================
+
+class EmployeeSkillCreate(BaseModel):
+    employee_id: int = Field(gt=0)
+    skill_id: int = Field(gt=0)
+    level: int = Field(ge=1, le=5)
+
+
+class EmployeeSkillUpdate(BaseModel):
+    level: int = Field(ge=1, le=5)
+
+
+class EmployeeSkillResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    employee_id: int
+    skill_id: int
+    level: int

@@ -9,6 +9,11 @@ from app.routers.employee_skills import (
     employee_skills_router as employees_skills_router
 )
 
+from app.routers.role_skills import (
+    router as role_skills_router,
+    role_skills_router as roles_skills_router
+)
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -20,8 +25,12 @@ app = FastAPI(
 app.include_router(employees.router)
 app.include_router(skills.router)
 app.include_router(roles.router)
+
 app.include_router(employee_skills_router)
 app.include_router(employees_skills_router)
+
+app.include_router(role_skills_router)
+app.include_router(roles_skills_router)
 
 
 @app.get("/")

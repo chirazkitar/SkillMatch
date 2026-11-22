@@ -97,3 +97,25 @@ class EmployeeSkillResponse(BaseModel):
     employee_id: int
     skill_id: int
     level: int
+
+# =========================
+# ROLE SKILLS SCHEMAS
+# =========================
+
+class RoleSkillCreate(BaseModel):
+    role_id: int = Field(gt=0)
+    skill_id: int = Field(gt=0)
+    required_level: int = Field(ge=1, le=5)
+
+
+class RoleSkillUpdate(BaseModel):
+    required_level: int = Field(ge=1, le=5)
+
+
+class RoleSkillResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    role_id: int
+    skill_id: int
+    required_level: int
